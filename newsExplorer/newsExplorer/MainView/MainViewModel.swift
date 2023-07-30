@@ -42,9 +42,31 @@ class MainViewModel: ObservableObject {
             let components = searchText.components(separatedBy: ":")
             let start = components[0].trimmingCharacters(in: .whitespaces)
             let end = components[1].trimmingCharacters(in: .whitespaces)
-            request(endpoint: "\(.startPeriod+start)\(.endPeriod+end)")
+            if isValidDate(dateString: start) && isValidDate(dateString: end) {
+                request(endpoint: "\(.startPeriod+start)\(.endPeriod+end)")
+            } else {
+                showAlert("Invalid date format. Please use YYYY-MM-dd format for start and end dates.")
+            }
         } else {
-            request(endpoint: .startPeriod+searchText)
+            if isValidDate(dateString: searchText) {
+                request(endpoint: .startPeriod+searchText)
+            } else {
+                showAlert("Invalid date format. Please use YYYY-MM-dd format for start and end dates.")
+            }
         }
+    }
+    
+    private func showAlert(_ message: String) {
+        DispatchQueue.main.async {
+            self.error = message
+            self.showAlert = true
+            self.isLoading = false
+        }
+    }
+    
+    private func isValidDate(dateString: String) -> Bool {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "YYYY-MM-dd"
+        return dateFormatter.date(from: dateString) != nil
     }
 }

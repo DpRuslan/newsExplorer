@@ -42,6 +42,7 @@ enum CustomError: Error {
 enum StatusCode: Int {
     case badRequest = 400
     case unauthorized = 401
+    case plan = 426
     case tooManyRequests = 429
     case serverError = 500
     case unknown
@@ -52,6 +53,8 @@ enum StatusCode: Int {
             return "The request was unacceptable, often due to a missing or misconfigured parameter."
         case .unauthorized:
             return "Your API key was missing from the request, or wasn't correct."
+        case .plan:
+            return "You are trying to request results too far in the past. Your plan permits you to request articles as far back as 2023-06-29"
         case .tooManyRequests:
             return "You made too many requests within a window of time and have been rate limited. Back off for a while."
         case .serverError:
