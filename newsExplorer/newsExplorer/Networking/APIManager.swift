@@ -79,7 +79,6 @@ class APIManager {
         
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        
         request.setValue(apiKey, forHTTPHeaderField: "X-Api-Key")
        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in

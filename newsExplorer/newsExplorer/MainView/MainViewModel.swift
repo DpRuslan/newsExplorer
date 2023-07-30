@@ -22,10 +22,7 @@ class MainViewModel: ObservableObject {
                     DispatchQueue.main.async { // Update the view on the main thread
                         self?.items = response.articles.map { ArticleWrapper(article: $0) }
                         self?.isLoading = false
-                        print("fetched")
-                        print("Number of items: \(self?.items.count ?? 0)")
                     }
-                     
                 } catch {
                     print(CustomError.decodingError.localizedDescription)
                 }
@@ -36,9 +33,18 @@ class MainViewModel: ObservableObject {
                     self?.showAlert = true
                     self?.isLoading = false
                 }
-               
-                print(error.localizedDescription)
             }
+        }
+    }
+    
+    func checksForPeriod(searchText: String) {
+        if searchText.contains(":") {
+            let components = searchText.components(separatedBy: ":")
+            let start = components[0].trimmingCharacters(in: .whitespaces)
+            let end = components[1].trimmingCharacters(in: .whitespaces)
+            request(endpoint: "\(.startPeriod+start)\(.endPeriod+end)")
+        } else {
+            request(endpoint: .startPeriod+searchText)
         }
     }
 }

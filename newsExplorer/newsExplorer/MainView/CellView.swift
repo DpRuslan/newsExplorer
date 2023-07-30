@@ -15,14 +15,12 @@ struct CellView: View {
                 Text(item.article.title ?? "None")
                     .font(Font.system(size: 20, weight: .bold))
                     .multilineTextAlignment(.center)
-                    .padding(0)
-                
+
                 Text(item.article.description ?? "None")
                     .multilineTextAlignment(.center)
-                    .padding(EdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5))
             }
-        
-            .padding(.horizontal, 10)
+            .lineLimit(nil)
+            .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
             .frame(maxWidth: .infinity)
             
             NavigationLink(destination: DetailView(item: item)) {

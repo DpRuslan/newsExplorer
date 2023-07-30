@@ -24,15 +24,15 @@ struct DetailView: View {
                     viewModel.loadedImage!
                         .resizable()
                         .cornerRadius(8)
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 10)
                         .frame(height: UIScreen.main.bounds.size.height/2.7, alignment: .top)
                 }
             }
             
             .cornerRadius(8)
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 10)
             .frame(height: UIScreen.main.bounds.size.height/2.7, alignment: .top)
-            
+            Spacer()
             List {
                 ForEach(viewModel.dataSource) { param in
                     VStack(alignment: .center) {
@@ -46,14 +46,15 @@ struct DetailView: View {
                     .listRowSeparator(.hidden)
                 }
             }
-            .padding(.top, -10)
+           
             .scrollContentBackground(.hidden)
-            .listStyle(.grouped)
+            .listStyle(PlainListStyle())
         }
         .navigationTitle("Details")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewModel.loadImageFromUrl()
+          
         }
     }
 }
