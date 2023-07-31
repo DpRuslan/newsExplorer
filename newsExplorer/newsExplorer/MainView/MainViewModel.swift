@@ -10,6 +10,8 @@ class MainViewModel: ObservableObject {
     @Published var error: String?
     @Published var isLoading: Bool = false
     
+    let popUpImage = Model.popUpImage
+    
     func request(endpoint: String) {
         isLoading = true
         let apiManager = APIManager(baseURL: .baseURL, apiKey: .apiKey)

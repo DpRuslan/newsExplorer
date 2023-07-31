@@ -26,7 +26,7 @@ struct MenuView: View {
             }
             
         } label: {
-            Image("popUp")
+            viewModel.popUpImage
                 .resizable()
                 .frame(width: 50, height: 50)
         }

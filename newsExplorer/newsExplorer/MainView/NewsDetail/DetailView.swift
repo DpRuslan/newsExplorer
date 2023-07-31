@@ -47,7 +47,6 @@ struct DetailView: View {
                 }
             }
            
-            .scrollContentBackground(.hidden)
             .listStyle(PlainListStyle())
         }
         .navigationTitle("Details")
@@ -58,4 +57,3 @@ struct DetailView: View {
         }
     }
 }
-
