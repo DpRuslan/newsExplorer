@@ -6,7 +6,7 @@ import Foundation
 
 extension String {
     static let baseURL = "https://newsapi.org/v2"
-    static let apiKey = "2fd66d8167044cb182ba107fbdde50fb"
+    static let apiKey = "9717220280c2444e81a65c7deda9854a"
     static let bitcoinEndpoint = "/everything?q=bitcoin"
     static let wordEndpoint = "/everything?q="
     static let startPeriod =  bitcoinEndpoint+"&from="
